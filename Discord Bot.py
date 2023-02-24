@@ -9,9 +9,11 @@ Token ="DISCORD TOKEN"
 client= commands.Bot(command_prefix = '.')
 
 players = {}
+
 @client.event
 async def on_ready():
     print("Bot is read")
+
 @client.command(pass_context=True)    
 async def join(ctx):
     channel = ctx.message.author.voice.channel
@@ -84,7 +86,6 @@ async def play(ctx, url: str):
 
     voice.play(discord.FFmpegPCMAudio("song.mp3"), after=lambda e: print("Music Ended"))
     
-
     nname = name.rsplit("-", 2)
     await ctx.send(f"We play: {nname[0]}")
     print("playing\n")
@@ -105,9 +106,6 @@ async def stop(ctx):
 async def start(ctx):
     voice = get(client.voice_clients, guild=ctx.guild)
     voice.resume()
-
-
-    
 
  
 client.run(Token)
